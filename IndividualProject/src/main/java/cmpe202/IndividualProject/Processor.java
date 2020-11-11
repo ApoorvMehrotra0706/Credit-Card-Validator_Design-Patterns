@@ -5,9 +5,13 @@ import java.util.List;
 public class Processor {
     
     public void processCard(String inputFile, String outputFile) {
-		FileFactory fileFactory = new FileFactory();
-		FileFormat f = fileFactory.checkFileFormat(inputFile);
-		List<CreditCard> list = f.getCreditCardDetails(inputFile);
-		f.writeFile(list, outputFile);
+		FileDetector fileDetector = new FileDetector();
+		FileFormat f = fileDetector.checkFileFormat(inputFile);
+		if( f != null ) {
+			List<CreditCard> list = f.getCreditCardDetails(inputFile);
+			f.writeFile(list, outputFile);
+		} else {
+			System.out.println("The current file type is not supported");
+		}
     }
 }

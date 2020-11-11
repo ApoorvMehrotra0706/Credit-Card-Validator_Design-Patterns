@@ -6,12 +6,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-public class FileFactoryTest {
+public class FileDetectorTest {
 
     @Test
     public void TestcheckFileFormatJson(){
         String filePath = "test.json";
-        FileFactory result = new FileFactory();
+        FileDetector result = new FileDetector();
         FileFormat format = result.checkFileFormat(filePath);
         assertTrue(format instanceof JsonFileFormat);
         assertFalse(format instanceof XmlFileFormat);
@@ -21,7 +21,7 @@ public class FileFactoryTest {
     @Test
     public void TestcheckFileFormatXml(){
         String filePath = "test.xml";
-        FileFactory result = new FileFactory();
+        FileDetector result = new FileDetector();
         FileFormat format = result.checkFileFormat(filePath);
         assertFalse(format instanceof JsonFileFormat);
         assertTrue(format instanceof XmlFileFormat);
@@ -31,7 +31,7 @@ public class FileFactoryTest {
     @Test
     public void TestcheckFileFormatCsv(){
         String filePath = "test.csv";
-        FileFactory result = new FileFactory();
+        FileDetector result = new FileDetector();
         FileFormat format = result.checkFileFormat(filePath);
         assertFalse(format instanceof JsonFileFormat);
         assertFalse(format instanceof XmlFileFormat);
@@ -41,7 +41,7 @@ public class FileFactoryTest {
     @Test
     public void TestcheckFileFormatOther(){
         String filePath = "test.txt";
-        FileFactory result = new FileFactory();
+        FileDetector result = new FileDetector();
         FileFormat format = result.checkFileFormat(filePath);
         assertFalse(format instanceof JsonFileFormat);
         assertFalse(format instanceof XmlFileFormat);

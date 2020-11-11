@@ -17,8 +17,8 @@ public class JsonFileFormatTest {
     @Test
     public void TestgetCreditCardDetails(){
         String filePath = "C:\\202\\Test.json";
-        FileFactory fileFactory = new FileFactory();
-		FileFormat f = fileFactory.checkFileFormat(filePath);
+        FileDetector fileDetector= new FileDetector();
+		FileFormat f = fileDetector.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         assertTrue(list.isEmpty());
     }
@@ -27,8 +27,8 @@ public class JsonFileFormatTest {
     public void TestwriteFile(){
         String filePath = "C:\\202\\Test.json";
         String outputFile = "C:\\202\\TestOutput.json";
-        FileFactory fileFactory = new FileFactory();
-		FileFormat f = fileFactory.checkFileFormat(filePath);
+        FileDetector fileDetector= new FileDetector();
+		FileFormat f = fileDetector.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         f.writeFile(list, outputFile);
         File filecheck = new File(outputFile);
@@ -39,8 +39,8 @@ public class JsonFileFormatTest {
     public void TestwriteFileDataCheck(){
         String filePath = "C:\\202\\Sample.json";
         String outputFile = "C:\\202\\TestOutputData.json";
-        FileFactory fileFactory = new FileFactory();
-		FileFormat f = fileFactory.checkFileFormat(filePath);
+        FileDetector fileDetector= new FileDetector();
+		FileFormat f = fileDetector.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         f.writeFile(list, outputFile);   
         BufferedReader b;

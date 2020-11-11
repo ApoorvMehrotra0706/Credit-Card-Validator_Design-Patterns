@@ -17,7 +17,7 @@ public class CsvFileFormatTest {
     @Test
     public void TestgetCreditCardDetails(){
         String filePath = "C:\\202\\CsvTest.csv";
-        FileFactory fileFactory = new FileFactory();
+        FileDetector fileFactory = new FileDetector();
 		FileFormat f = fileFactory.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         assertTrue(list.isEmpty());
@@ -27,7 +27,7 @@ public class CsvFileFormatTest {
     public void TestwriteFile(){
         String filePath = "C:\\202\\CsvTest.csv";
         String outputFile = "C:\\202\\TestCsvOutput.csv";
-        FileFactory fileFactory = new FileFactory();
+        FileDetector fileFactory = new FileDetector();
 		FileFormat f = fileFactory.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         f.writeFile(list, outputFile);
@@ -39,7 +39,7 @@ public class CsvFileFormatTest {
     public void TestwriteFileDataCheck(){
         String filePath = "C:\\202\\Sample.csv";
         String outputFile = "C:\\202\\TestCsvOutputData.json";
-        FileFactory fileFactory = new FileFactory();
+        FileDetector fileFactory = new FileDetector();
 		FileFormat f = fileFactory.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         f.writeFile(list, outputFile);   

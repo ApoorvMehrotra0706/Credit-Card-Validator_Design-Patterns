@@ -17,8 +17,8 @@ public class XmlFileFormatTest {
     @Test
     public void TestgetCreditCardDetails(){
         String filePath = "C:\\202\\XmlTest.xml";
-        FileFactory fileFactory = new FileFactory();
-		FileFormat f = fileFactory.checkFileFormat(filePath);
+        FileDetector fileDetector= new FileDetector();
+		FileFormat f = fileDetector.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         assertTrue(list.isEmpty());
     }
@@ -27,8 +27,8 @@ public class XmlFileFormatTest {
     public void TestwriteFile(){
         String filePath = "C:\\202\\XmlTest.xml";
         String outputFile = "C:\\202\\XmlTestOutput.xml";
-        FileFactory fileFactory = new FileFactory();
-		FileFormat f = fileFactory.checkFileFormat(filePath);
+        FileDetector fileDetector= new FileDetector();
+		FileFormat f = fileDetector.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         f.writeFile(list, outputFile);
         File filecheck = new File(outputFile);
@@ -39,8 +39,8 @@ public class XmlFileFormatTest {
     public void TestwriteFileDataCheck(){
         String filePath = "C:\\202\\Sample.xml";
         String outputFile = "C:\\202\\TestXmlOutputData.xml";
-        FileFactory fileFactory = new FileFactory();
-		FileFormat f = fileFactory.checkFileFormat(filePath);
+        FileDetector fileDetector= new FileDetector();
+		FileFormat f = fileDetector.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
         f.writeFile(list, outputFile);
         BufferedReader b;

@@ -2,7 +2,7 @@ package cmpe202.IndividualProject;
 
 import java.io.File;
 
-public class FileFactory {
+public class FileDetector {
 	
 	private FileFormat file;
 	
