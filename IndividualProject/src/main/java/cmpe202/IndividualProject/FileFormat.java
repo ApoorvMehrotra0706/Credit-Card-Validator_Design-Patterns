@@ -1,6 +1,5 @@
 package cmpe202.IndividualProject;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface FileFormat {

@@ -45,7 +45,7 @@ public class CsvFileFormat implements FileFormat {
 		
     	CSVWriter writer = null;
 		try {
-			writer = new CSVWriter(new FileWriter(outputFile, true));
+			writer = new CSVWriter(new FileWriter(outputFile, false));
 			String [] heading = "CardNumber,TypeOfCard".split(",");
 
     		writer.writeNext(heading);

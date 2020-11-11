@@ -1,8 +1,6 @@
 package cmpe202.IndividualProject;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
@@ -10,7 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -23,7 +20,6 @@ public class XmlFileFormatTest {
         FileFactory fileFactory = new FileFactory();
 		FileFormat f = fileFactory.checkFileFormat(filePath);
         List<CreditCard> list = f.getCreditCardDetails(filePath);
-        // List<CreditCard> expected = new ArrayList<CreditCard>();
         assertTrue(list.isEmpty());
     }
 
