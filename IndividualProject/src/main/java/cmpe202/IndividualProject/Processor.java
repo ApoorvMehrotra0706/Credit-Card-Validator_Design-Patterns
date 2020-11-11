@@ -8,7 +8,6 @@ public class Processor {
 		FileFactory fileFactory = new FileFactory();
 		FileFormat f = fileFactory.checkFileFormat(inputFile);
 		List<CreditCard> list = f.getCreditCardDetails(inputFile);
-		System.out.println(list);
 		f.writeFile(list, outputFile);
     }
 }

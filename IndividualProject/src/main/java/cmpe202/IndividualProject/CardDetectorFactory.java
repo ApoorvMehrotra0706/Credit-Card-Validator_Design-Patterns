@@ -5,10 +5,6 @@ public class CardDetectorFactory {
     private String expirationDate;
     private String nameOfCardholder;
 
-    public CardDetectorFactory() {
-
-    }
-
     public CreditCard checkTypeOfCard(String cardNumber, String expirationDate, String nameOfCardholder) {
         CreditCard creditCard;
         if(cardNumber.length() <= 19) {

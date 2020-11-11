@@ -19,15 +19,5 @@ public class CreditCard {
 
 	public String getTypeOfCard() {
 		return this.typeOfCard;
-	}
-
-	public String getExpirationDate() {
-		return this.expirationDate;
-	}
-
-	public String getNameOfCardHolder() {
-		return this.nameOfCardHolder;
-	}
-
-	
+	}	
 }

@@ -50,9 +50,9 @@ public class CsvFileFormat implements FileFormat {
 
     		writer.writeNext(heading);
 			for(CreditCard c : cc) {
-				String[] data = new String[4];
+				String[] data = new String[2];
 				data[0] = c.getCardNumber();
-				data[3] = c.getTypeOfCard();
+				data[1] = c.getTypeOfCard();
 				
 				writer.writeNext(data);
 			}
