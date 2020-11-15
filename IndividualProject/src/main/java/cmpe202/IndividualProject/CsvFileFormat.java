@@ -11,16 +11,17 @@ import com.opencsv.CSVWriter;
 public class CsvFileFormat implements FileFormat {
 
 	public List<CreditCard> getCreditCardDetails(String filePath) {
-		FileReader filereader;
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = ",";
 		CardDetectorFactory cardDetectorFactory;
 		List<CreditCard> list = new ArrayList<CreditCard>();
-		try {
-			filereader = new FileReader(filePath);
-			CSVReader csvReader = new CSVReader(filereader);
-			String[] nextRecord;
+		try{
+			br = new BufferedReader(new FileReader(filePath));
 			int i = 0;
-			while ((nextRecord = csvReader.readNext()) != null) { 
-				if(i > 0) {
+			while ((line = br.readLine()) != null) {
+				if(i > 0)  {
+					String[] nextRecord = line.split(cvsSplitBy);
 					String cardNumber = nextRecord[0];
 					String expirationDate = nextRecord[1];
 					String nameOfCardholder = nextRecord[2];
@@ -28,8 +29,9 @@ public class CsvFileFormat implements FileFormat {
 					CreditCard creditCard = cardDetectorFactory.checkTypeOfCard(cardNumber, expirationDate, nameOfCardholder);
 					list.add(creditCard);
 				}
-				i++; 
-			} 
+				i++;
+			}
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,33 +44,31 @@ public class CsvFileFormat implements FileFormat {
 	}
 
 	public void writeFile(List<CreditCard> cc, String outputFile) {
-		
-    	CSVWriter writer = null;
+		FileWriter csvWriter;
 		try {
-			writer = new CSVWriter(new FileWriter(outputFile, false));
-			String [] heading = "CardNumber,TypeOfCard".split(",");
-
-    		writer.writeNext(heading);
-			for(CreditCard c : cc) {
-				String[] data = new String[2];
-				data[0] = c.getCardNumber();
-				data[1] = c.getTypeOfCard();
-				
-				writer.writeNext(data);
-			}
-    		writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			csvWriter = new FileWriter(outputFile);
 			try {
-				writer.close();
-			} catch (IOException e1) {
+				csvWriter.append("CardNumber");
+				csvWriter.append(",");
+				csvWriter.append("TypeOfCard");
+				csvWriter.append("\n");
+				for(CreditCard c : cc) {
+					String[] data = new String[2];
+					data[0] = c.getCardNumber();
+					data[1] = c.getTypeOfCard();
+					csvWriter.append(String.join(",", data));
+					csvWriter.append("\n");
+				}
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				e.printStackTrace();
 			}
+			csvWriter.flush();
+			csvWriter.close();	
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-
-    	
 	}
 
 }

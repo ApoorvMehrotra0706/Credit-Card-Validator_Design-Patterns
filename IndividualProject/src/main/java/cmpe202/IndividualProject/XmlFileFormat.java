@@ -3,6 +3,7 @@ package cmpe202.IndividualProject;
 import java.io.File;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -67,6 +68,7 @@ public class XmlFileFormat implements FileFormat {
 			for(CreditCard c : cc) {
 			// employee element
 				Element row = document.createElement("row");
+				root.appendChild(row);
 							
 				// CardNumber element
 				Element cardNumber = document.createElement("CardNumber");
@@ -78,16 +80,21 @@ public class XmlFileFormat implements FileFormat {
 				typeOfCard.appendChild(document.createTextNode(c.getTypeOfCard()));
 				row.appendChild(typeOfCard);
  
-				root.appendChild(row);
+				// root.appendChild(row);
 			}
 
 			// create the xml file
             //transform the DOM Object to an XML File
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            javax.xml.transform.Transformer transformer = transformerFactory.newTransformer();
+			javax.xml.transform.Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
             DOMSource domSource = new DOMSource(document);
 			StreamResult streamResult = new StreamResult(new File(outputFile));
 			transformer.transform(domSource, streamResult);
+
+			
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

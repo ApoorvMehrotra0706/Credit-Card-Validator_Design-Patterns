@@ -7,6 +7,10 @@ public class CardDetectorFactory {
 
     public CreditCard checkTypeOfCard(String cardNumber, String expirationDate, String nameOfCardholder) {
         CreditCard creditCard;
+        // To be checked
+        if(!Character.isDigit(cardNumber.charAt(cardNumber.length()-1))) {
+            return new CreditCard(cardNumber,expirationDate,nameOfCardholder);
+        }
         if(cardNumber.length() <= 19) {
             if(cardNumber.charAt(0) == '5') {
                 if(cardNumber.charAt(1) >= '1' && cardNumber.charAt(1) <= '5') {
